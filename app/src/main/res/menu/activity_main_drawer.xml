@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_saqlanganlar"
+            android:icon="@drawable/vector"
+            android:title="Saqlangan maqollar" />
+        <item
+            android:id="@+id/nav_sozlamalar"
+            android:icon="@drawable/vector1"
+            android:title="Sozlamalar" />
+        <item
+            android:id="@+id/nav_daster_haqida"
+            android:icon="@drawable/vector2"
+            android:title="Dastur haqida" />
+        <item
+            android:id="@+id/nav_ulashish"
+            android:icon="@drawable/vector3"
+            android:title="Ulashish" />
+    </group>
+
+</menu>
