@@ -9,30 +9,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.proverbs.R
 import com.example.proverbs.databinding.ItemViewBinding
 import com.example.proverbs.model.Folder
-import com.example.proverbs.model.Proverb
+import com.example.proverbs.model.Model
 
 
 class RecyclerAdapter(var listener:OnClick): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private val itemCallback =object : DiffUtil.ItemCallback<Proverb>(){
-        override fun areItemsTheSame(oldItem: Proverb, newItem: Proverb): Boolean {
+    private val itemCallback =object : DiffUtil.ItemCallback<Model>(){
+        override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Proverb, newItem: Proverb): Boolean {
-            return oldItem.proverbText == newItem.proverbText
+        override fun areContentsTheSame(oldItem: Model, newItem: Model): Boolean {
+            return oldItem.uzbek == newItem.uzbek
         }
     }
 
     val differ = AsyncListDiffer(this,itemCallback)
 
     inner class ViewHolder(private val binding:ItemViewBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(proverb:Proverb){
+        fun onBind(proverb:Model){
             binding.root.setOnClickListener {
                 listener.onItemClick(proverb)
             }
-            binding.proverbText.text = proverb.proverbText
-
+            binding.proverbText.text = proverb.uzbek
         }
     }
 
@@ -48,11 +47,10 @@ class RecyclerAdapter(var listener:OnClick): RecyclerView.Adapter<RecyclerAdapte
 
     override fun getItemCount(): Int =  differ.currentList.size
 
-
 }
 
 interface OnClick{
     fun onForwardBtnClick(folder:Folder)
     fun onFolderClick(folder: Folder)
-    fun onItemClick(proverb:Proverb)
+    fun onItemClick(proverb:Model)
 }

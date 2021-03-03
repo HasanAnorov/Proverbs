@@ -15,4 +15,6 @@
     <string name="all_folders">Barcha ruknlar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="saqlanga_maqollar">Saqlangan maqollar</string>
+    <string name="biz_haqimizda">Biz haqimizda</string>
 </resources>

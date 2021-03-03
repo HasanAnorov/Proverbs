@@ -1,4 +1,4 @@
-package com.example.proverbs.ui.bottom_navigation.folders
+package com.example.proverbs.ui.bottom_navigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import com.example.proverbs.adapter.FolderRecyclerAdapter
 import com.example.proverbs.adapter.OnClick
 import com.example.proverbs.databinding.FragmentAllFoldersBinding
 import com.example.proverbs.model.Folder
+import com.example.proverbs.model.Model
 import com.example.proverbs.model.Proverb
 import com.example.proverbs.viewModel.FolderViewModel
 
@@ -48,7 +49,7 @@ class AllFoldersFragment : Fragment(),OnClick {
         TODO("Not yet implemented")
     }
 
-    override fun onItemClick(proverb: Proverb) {
+    override fun onItemClick(proverb: Model) {
         TODO("Not yet implemented")
     }
 

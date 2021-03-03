@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Qo'yni ham o'z oyog'idan osishadilar "
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_margin="16dp" />
