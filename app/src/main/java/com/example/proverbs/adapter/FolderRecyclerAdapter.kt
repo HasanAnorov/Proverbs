@@ -1,57 +1,44 @@
 package com.example.proverbs.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proverbs.R
-import com.example.proverbs.databinding.ItemViewFoldersBinding
 import com.example.proverbs.model.Folder
 
-class FolderRecyclerAdapter(var listener: OnClick):RecyclerView.Adapter<FolderRecyclerAdapter.FolderViewHolder>() {
 
-    private val itemCallback = object :DiffUtil.ItemCallback<Folder>(){
+class FolderRecyclerAdapter(var listener: OnClick,var list:List<Folder>):RecyclerView.Adapter<FolderRecyclerAdapter.FolderViewHolder>() {
 
-        override fun areItemsTheSame(oldItem: Folder, newItem: Folder): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Folder, newItem: Folder): Boolean {
-            return oldItem.folder_name == newItem.folder_name
-        }
-
-    }
-
-    val differ = AsyncListDiffer(this,itemCallback)
-
-        inner class FolderViewHolder(val binding: ItemViewFoldersBinding):RecyclerView.ViewHolder(binding.root){
+        inner class FolderViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
             fun onBind(folder:Folder){
 //                binding.backgroundPhoto.setImageResource(R.drawable.adolat)
 //                binding.tvProverbNumber.text = "52 ta"
 //                binding.tvThemeProverb.text = "Adolat, tenglik haqidaa"
-                binding.tvThemeProverb.text = folder.folder_name.toString()
-                binding.tvProverbNumber.text = folder.included_proverbs.toString()
+                itemView.findViewById<TextView>(R.id.tv_theme_proverb).text = folder.folder_name.toString()
+                itemView.findViewById<TextView>(R.id.tv_proverb_number).text = folder.included_proverbs.toString()
 
 
-                binding.forwardButton.setOnClickListener {
+                itemView.findViewById<ImageView>(R.id.forward_button).setOnClickListener {
                     listener.onForwardBtnClick(folder)
                 }
-                binding.root.setOnClickListener {
+                itemView.setOnClickListener {
                     listener.onFolderClick(folder)
                 }
             }
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FolderViewHolder {
-        return  FolderViewHolder(ItemViewFoldersBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        val  view = LayoutInflater.from(parent.context).inflate(R.layout.item_view_folders,null,false)
+        return  FolderViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FolderViewHolder, position: Int) {
-        holder.onBind(differ.currentList[position])
+        holder.onBind(list[position])
     }
 
-    override fun getItemCount(): Int = differ.currentList.size
+    override fun getItemCount(): Int = list.size
 
 }

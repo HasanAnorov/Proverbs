@@ -5,22 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
 import com.example.proverbs.adapter.FolderRecyclerAdapter
 import com.example.proverbs.adapter.OnClick
 import com.example.proverbs.databinding.FragmentAllFoldersBinding
 import com.example.proverbs.model.Folder
-import com.example.proverbs.model.Model
 import com.example.proverbs.model.Proverb
-import com.example.proverbs.viewModel.FolderViewModel
+import com.example.proverbs.networking.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class AllFoldersFragment : Fragment(),OnClick {
 
     private lateinit var binding: FragmentAllFoldersBinding
-    private lateinit var viewModel:FolderViewModel
     private lateinit var adapter : FolderRecyclerAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,16 +28,25 @@ class AllFoldersFragment : Fragment(),OnClick {
     ): View? {
         binding = FragmentAllFoldersBinding.inflate(inflater,container,false)
 
-        adapter = FolderRecyclerAdapter(this)
+        val api = RetrofitInstance.api
+        api.getAllFolders().enqueue(object : Callback<List<Folder>> {
+            override fun onResponse(call: Call<List<Folder>>, response: Response<List<Folder>>) {
+                if (response.isSuccessful) {
 
-        viewModel = ViewModelProvider(this)[FolderViewModel::class.java]
+                    val list = response.body() as List<Folder>
 
-        viewModel.getMutableList().observe(requireActivity(),{
-            adapter.differ.submitList(it)
-        })
+                    adapter = FolderRecyclerAdapter(this@AllFoldersFragment, list)
 
-        binding.recyclerViewFolders.adapter = adapter
+                    binding.recyclerViewFolders.adapter = adapter
+                }
+            }
 
+            override fun onFailure(call: Call<List<Folder>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Something went wrong !", Toast.LENGTH_SHORT).show()
+            }
+        }
+        )
+        
         return binding.root
     }
 
@@ -49,7 +58,7 @@ class AllFoldersFragment : Fragment(),OnClick {
         TODO("Not yet implemented")
     }
 
-    override fun onItemClick(proverb: Model) {
+    override fun onItemClick(proverb: Proverb) {
         TODO("Not yet implemented")
     }
 

@@ -1,36 +1,27 @@
 package com.example.proverbs
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
-import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
-import com.example.proverbs.adapter.FolderRecyclerAdapter
-import com.example.proverbs.adapter.OnClick
 import com.example.proverbs.databinding.ActivityMainBinding
-import com.example.proverbs.model.Folder
 import com.example.proverbs.ui.FavoritesActivity
 import com.example.proverbs.ui.SearchActivity
 import com.example.proverbs.ui.SettingsActivity
-import com.example.proverbs.viewModel.FolderViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 
-class MainActivity : AppCompatActivity() {
+class
+MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -111,6 +102,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
+
             true
         }
         
